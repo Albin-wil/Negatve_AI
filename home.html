@@ -1,186 +1,170 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Chatbot UI</title>
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #f7f7f8;
-      display: flex;
-      flex-direction: column;
-      height: 100vh;
-    }
-
-    header {
-      background-color: #10a37f;
-      color: white;
-      text-align: center;
-      padding: 15px;
-      font-size: 1.5em;
-    }
-
-    .chat-container {
-      flex: 1;
-      padding: 20px;
-      overflow-y: auto;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .message {
-      max-width: 70%;
-      margin: 10px 0;
-      padding: 10px 15px;
-      border-radius: 10px;
-      line-height: 1.4;
-      white-space: pre-wrap;
-      word-break: break-word;
-    }
-
-    .user {
-      align-self: flex-end;
-      background-color: #10a37f;
-      color: white;
-      border-bottom-right-radius: 0;
-    }
-
-    .bot {
-      align-self: flex-start;
-      background-color: #e0e0e0;
-      color: black;
-      border-bottom-left-radius: 0;
-    }
-
-    .loading {
-      font-style: italic;
-      color: gray;
-    }
-
-    .input-container {
-      display: flex;
-      padding: 10px;
-      border-top: 1px solid #ccc;
-      background: white;
-    }
-
-    .input-container input {
-      flex: 1;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 20px;
-      font-size: 1em;
-      outline: none;
-    }
-
-    .input-container button {
-      margin-left: 10px;
-      padding: 10px 20px;
-      background-color: #10a37f;
-      color: white;
-      border: none;
-      border-radius: 20px;
-      cursor: pointer;
-    }
-
-    .input-container button:hover {
-      background-color: #0c8c6e;
-    }
-  </style>
+    <title>Negative AI Chat Simulation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #111;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        .chat-box {
+            background-color: #222;
+            border-radius: 10px;
+            padding: 15px;
+            width: 400px;
+            height: 500px;
+            overflow-y: auto;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+        }
+        .message {
+            background-color: #333;
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+        .bot {
+            color: #ff4c4c;
+        }
+        button {
+            margin-top: 15px;
+            padding: 10px;
+            background-color: #ff4c4c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #e64545;
+        }
+    </style>
 </head>
 <body>
 
-  <header>
-    Critic 🤖
-  </header>
+    <h1>AI Negative Chat Simulation</h1>
+    <div class="chat-box" id="chatBox"></div>
+    <button onclick="generateComment()">Generate Negative Comment</button>
 
-  <div class="chat-container" id="chat-container">
-    <div class="message bot">👋 Hello! How can I help you today?</div>
-  </div>
+    <script>
+        const comments = [
+            "You never finish what you start.",
+            "Your attitude drives people away.",
+            "You ignore important details.",
+            "You take credit for others’ work.",
+            "You avoid responsibility.",
+            "You rarely listen to advice.",
+            "You complain more than you help.",
+            "You interrupt people constantly.",
+            "You refuse to learn from mistakes.",
+            "You waste opportunities.",
+            "You’re overly arrogant.",
+            "You spread negativity everywhere.",
+            "You avoid teamwork.",
+            "You resist change unnecessarily.",
+            "You make excuses for everything.",
+            "You underestimate others’ efforts.",
+            "You’re unreliable in commitments.",
+            "You judge people too quickly.",
+            "You lack empathy.",
+            "You disregard deadlines.",
+            "You create unnecessary drama.",
+            "You blame others for your faults.",
+            "You break promises often.",
+            "You ignore constructive criticism.",
+            "You only work for personal gain.",
+            "You fail to appreciate others.",
+            "You hold grudges.",
+            "You’re impatient with everyone.",
+            "You fail to admit when you’re wrong.",
+            "You gossip about people.",
+            "You waste people’s time.",
+            "You take more than you give.",
+            "You avoid taking initiative.",
+            "You resist collaboration.",
+            "You think only about yourself.",
+            "You underestimate challenges.",
+            "You overpromise and underdeliver.",
+            "You make poor decisions.",
+            "You lack self-discipline.",
+            "You push blame onto others.",
+            "You avoid difficult tasks.",
+            "You exaggerate problems.",
+            "You talk more than you act.",
+            "You dismiss others’ opinions.",
+            "You ignore the bigger picture.",
+            "You disrespect boundaries.",
+            "You fail to plan ahead.",
+            "You complain about small things.",
+            "You lack focus.",
+            "You avoid responsibility.",
+            "You dismiss feedback.",
+            "You’re quick to anger.",
+            "You resist learning new skills.",
+            "You give up too soon.",
+            "You talk over people.",
+            "You’re careless with details.",
+            "You fail to support your team.",
+            "You refuse to compromise.",
+            "You’re inconsistent.",
+            "You avoid accountability.",
+            "You create conflicts.",
+            "You ignore rules.",
+            "You waste resources.",
+            "You delay important tasks.",
+            "You mismanage priorities.",
+            "You don’t finish assignments.",
+            "You ignore deadlines.",
+            "You avoid hard work.",
+            "You lack motivation.",
+            "You make careless mistakes.",
+            "You take advantage of others.",
+            "You act entitled.",
+            "You resist feedback.",
+            "You avoid problem-solving.",
+            "You procrastinate constantly.",
+            "You refuse to adapt.",
+            "You speak without thinking.",
+            "You take shortcuts that fail.",
+            "You fail to communicate.",
+            "You ignore instructions.",
+            "You act without considering consequences.",
+            "You avoid responsibility for outcomes.",
+            "You disregard important tasks.",
+            "You fail to prepare.",
+            "You ignore safety rules.",
+            "You mislead people.",
+            "You disrespect time.",
+            "You don’t follow through.",
+            "You make things harder for others.",
+            "You ignore important issues.",
+            "You avoid participation.",
+            "You don’t contribute equally.",
+            "You’re self-centered.",
+            "You lack commitment.",
+            "You avoid improvement.",
+            "You ignore expectations.",
+            "You delay action.",
+            "You waste potential.",
+            "You avoid responsibility in groups.",
+            "You neglect important duties.",
+            "You focus on problems, not solutions."
+        ];
 
-  <div class="input-container">
-    <input type="text" id="user-input" placeholder="Type your message and hit Enter..." />
-    <button onclick="sendMessage()">Send</button>
-  </div>
-
-  <script>
-    const input = document.getElementById("user-input");
-
-    // Send on Enter
-    input.addEventListener("keydown", function(event) {
-      if (event.key === "Enter") {
-        sendMessage();
-      }
-    });
-
-    function sendMessage() {
-      const message = input.value.trim();
-      if (message === "") return;
-
-      addMessage("user", message);
-      input.value = "";
-
-      // Add loading animation
-      const loadingMsg = addMessage("bot", "Typing...");
-      loadingMsg.classList.add("loading");
-
-      // Simulate a delay for bot response
-      setTimeout(() => {
-        loadingMsg.remove(); // remove "Typing..."
-// Send to backend API
-fetch("http://localhost:5000/chat", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json"
-  },
-  body: JSON.stringify({ message: message })
-})
-.then(res => res.json())
-.then(data => {
-  loadingMsg.remove();
-  addMessage("bot", data.reply);
-})
-.catch(err => {
-  loadingMsg.remove();
-  addMessage("bot", "⚠️ Error connecting to AI.");
-});
-
-      }, 3500);
-    }
-
-    function addMessage(sender, text) {
-      const chatContainer = document.getElementById("chat-container");
-      const messageDiv = document.createElement("div");
-      messageDiv.classList.add("message", sender);
-      messageDiv.innerText = text;
-      chatContainer.appendChild(messageDiv);
-      chatContainer.scrollTop = chatContainer.scrollHeight;
-      return messageDiv;
-    }
-
-    function generateReply(userText) {
-      // Very simple emoji-aware bot reply logic
-      const lowerText = userText.toLowerCase();
-      if (lowerText.includes("hello") || lowerText.includes("hi")) {
-        return "👋 Hi there!";
-      } else if (lowerText.includes("how are you")) {
-        return "😊 I'm doing great, thank you!";
-      } else if (lowerText.includes("bye")) {
-        return "👋 Goodbye! Have a nice day!";
-      } else if (lowerText.includes("joke")) {
-        return "😂 Why don't robots have siblings? Because they all share the same motherboard!";
-      } else {
-        return "🤖 I heard you say: \"" + userText + "\"";
-      }
-    }
-  </script>
+        function generateComment() {
+            const randomComment = comments[Math.floor(Math.random() * comments.length)];
+            const chatBox = document.getElementById("chatBox");
+            const newMessage = document.createElement("div");
+            newMessage.classList.add("message", "bot");
+            newMessage.textContent = "AI: " + randomComment;
+            chatBox.appendChild(newMessage);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+    </script>
 
 </body>
 </html>
