@@ -5,7 +5,7 @@ import openai
 app = Flask(__name__)
 CORS(app)
 
-openai.api_key = 'YOUR_OPENAI_API_KEY'  # Replace with your key
+openai.api_key = 'sk-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'  # Replace with your key
 
 @app.route("/chat", methods=["POST"])
 def chat():
