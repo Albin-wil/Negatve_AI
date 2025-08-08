@@ -1,119 +1,108 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Negative AI Chat Simulation</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #111;
-            color: white;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px;
-        }
-        .chat-box {
-            background-color: #222;
-            border-radius: 10px;
-            padding: 15px;
-            width: 400px;
-            height: 500px;
-            overflow-y: auto;
-            box-shadow: 0 0 10px rgba(0,0,0,0.5);
-        }
-        .message {
-            background-color: #333;
-            padding: 10px;
-            border-radius: 8px;
-            margin-bottom: 10px;
-        }
-        .bot {
-            color: #ff4c4c;
-        }
-        button {
-            margin-top: 15px;
-            padding: 10px;
-            background-color: #ff4c4c;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #e64545;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Negative AI Chat</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #0f172a;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+    .chat-container {
+        width: 400px;
+        background-color: #1e293b;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    }
+    .chat-box {
+        flex: 1;
+        padding: 15px;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+    }
+    .message {
+        margin: 5px 0;
+        padding: 10px;
+        border-radius: 8px;
+        max-width: 80%;
+    }
+    .user {
+        background-color: #2563eb;
+        align-self: flex-end;
+    }
+    .bot {
+        background-color: #4b5563;
+        align-self: flex-start;
+    }
+    .input-box {
+        display: flex;
+        border-top: 1px solid #334155;
+    }
+    input {
+        flex: 1;
+        padding: 10px;
+        border: none;
+        outline: none;
+        font-size: 16px;
+        background-color: #0f172a;
+        color: white;
+    }
+    button {
+        background-color: #2563eb;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        cursor: pointer;
+    }
+    button:hover {
+        background-color: #1d4ed8;
+    }
+</style>
 </head>
 <body>
 
-    <h1>AI Negative Chat Simulation</h1>
-    <div class="chat-box" id="chatBox"></div>
-    <button onclick="generateComment()">Generate Negative Comment</button>
+<div class="chat-container">
+    <div class="chat-box" id="chat-box"></div>
+    <div class="input-box">
+        <input type="text" id="user-input" placeholder="Type a name...">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+</div>
 
-    <script>
-        const comments = [
-            "You never finish what you start.",
-            "Your attitude drives people away.",
-            "You ignore important details.",
-            "You take credit for others’ work.",
-            "You avoid responsibility.",
-            "You rarely listen to advice.",
-            "You complain more than you help.",
-            "You interrupt people constantly.",
-            "You refuse to learn from mistakes.",
-            "You waste opportunities.",
-            "You’re overly arrogant.",
-            "You spread negativity everywhere.",
-            "You avoid teamwork.",
-            "You resist change unnecessarily.",
-            "You make excuses for everything.",
-            "You underestimate others’ efforts.",
-            "You’re unreliable in commitments.",
-            "You judge people too quickly.",
-            "You lack empathy.",
-            "You disregard deadlines.",
-            "You create unnecessary drama.",
-            "You blame others for your faults.",
-            "You break promises often.",
-            "You ignore constructive criticism.",
-            "You only work for personal gain.",
-            "You fail to appreciate others.",
-            "You hold grudges.",
-            "You’re impatient with everyone.",
-            "You fail to admit when you’re wrong.",
-            "You gossip about people.",
-            "You waste people’s time.",
-            "You take more than you give.",
-            "You avoid taking initiative.",
-            "You resist collaboration.",
-            "You think only about yourself.",
-            "You underestimate challenges.",
-            "You overpromise and underdeliver.",
-            "You make poor decisions.",
-            "You lack self-discipline.",
-            "You push blame onto others.",
-            "You avoid difficult tasks.",
-            "You exaggerate problems.",
-            "You talk more than you act.",
-            "You dismiss others’ opinions.",
-            "You ignore the bigger picture.",
-            "You disrespect boundaries.",
-            "You fail to plan ahead.",
-            "You complain about small things.",
-            "You lack focus.",
-            "You avoid responsibility.",
-            "You dismiss feedback.",
-            "You’re quick to anger.",
-            "You resist learning new skills.",
-            "You give up too soon.",
-            "You talk over people.",
-            "You’re careless with details.",
-            "You fail to support your team.",
-            "You refuse to compromise.",
-            "You’re inconsistent.",
-            "You avoid accountability.",
-            "You create conflicts.",
-            "You ignore rules.",
+<script>
+    const negativeComments = [
+        "You're about as useful as a chocolate teapot.",
+        "I've met bricks with better personality.",
+        "If ignorance is bliss, you must be the happiest person alive.",
+        "Your ideas are like clouds—full of hot air.",
+        "I've seen more intelligence in a potato.",
+        "You bring everyone’s IQ down when you speak.",
+        "You're proof evolution can go in reverse.",
+        "I've met pencils with more point.",
+        "You're like a cloud. When you disappear, it’s a beautiful day.",
+        "Even your shadow leaves you in the dark.",
+        "I've seen snails move faster than your thinking.",
+        "Your charm is like expired milk.",
+        "You're the reason instructions say 'Do not try this at home.'",
+        "If laziness was an Olympic sport, you'd win gold.",
+        "Your presence is like a software bug nobody can fix.",
+        "I've seen more life in a rock.",
+        "You're the human version of a typo.",
+        "You have the charisma of a damp sponge.",
+        "You're proof that natural selection is still testing ideas.",
+        "Even autocorrect can’t save you.",
+         "You ignore rules.",
             "You waste resources.",
             "You delay important tasks.",
             "You mismanage priorities.",
@@ -153,18 +142,41 @@
             "You avoid responsibility in groups.",
             "You neglect important duties.",
             "You focus on problems, not solutions."
-        ];
+        // ... Repeat until you have 100 unique insults
+    ];
 
-        function generateComment() {
-            const randomComment = comments[Math.floor(Math.random() * comments.length)];
-            const chatBox = document.getElementById("chatBox");
-            const newMessage = document.createElement("div");
-            newMessage.classList.add("message", "bot");
-            newMessage.textContent = "AI: " + randomComment;
-            chatBox.appendChild(newMessage);
-            chatBox.scrollTop = chatBox.scrollHeight;
+    function sendMessage() {
+        const inputField = document.getElementById("user-input");
+        const message = inputField.value.trim();
+        if (message === "") return;
+
+        // Display user message
+        addMessage(message, "user");
+        inputField.value = "";
+
+        // Show bot reply after 3 seconds
+        setTimeout(() => {
+            const randomComment = negativeComments[Math.floor(Math.random() * negativeComments.length)];
+            addMessage(randomComment, "bot");
+        }, 3000);
+    }
+
+    function addMessage(text, sender) {
+        const chatBox = document.getElementById("chat-box");
+        const messageDiv = document.createElement("div");
+        messageDiv.classList.add("message", sender);
+        messageDiv.textContent = text;
+        chatBox.appendChild(messageDiv);
+        chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    // Send message when pressing Enter
+    document.getElementById("user-input").addEventListener("keypress", function(event) {
+        if (event.key === "Enter") {
+            sendMessage();
         }
-    </script>
+    });
+</script>
 
 </body>
 </html>
