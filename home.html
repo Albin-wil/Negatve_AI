@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Chatbot UI</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f7f7f8;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+
+    header {
+      background-color: #10a37f;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      font-size: 1.5em;
+    }
+
+    .chat-container {
+      flex: 1;
+      padding: 20px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .message {
+      max-width: 70%;
+      margin: 10px 0;
+      padding: 10px 15px;
+      border-radius: 10px;
+      line-height: 1.4;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .user {
+      align-self: flex-end;
+      background-color: #10a37f;
+      color: white;
+      border-bottom-right-radius: 0;
+    }
+
+    .bot {
+      align-self: flex-start;
+      background-color: #e0e0e0;
+      color: black;
+      border-bottom-left-radius: 0;
+    }
+
+    .loading {
+      font-style: italic;
+      color: gray;
+    }
+
+    .input-container {
+      display: flex;
+      padding: 10px;
+      border-top: 1px solid #ccc;
+      background: white;
+    }
+
+    .input-container input {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 20px;
+      font-size: 1em;
+      outline: none;
+    }
+
+    .input-container button {
+      margin-left: 10px;
+      padding: 10px 20px;
+      background-color: #10a37f;
+      color: white;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+    }
+
+    .input-container button:hover {
+      background-color: #0c8c6e;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    Critic 🤖
+  </header>
+
+  <div class="chat-container" id="chat-container">
+    <div class="message bot">👋 Hello! How can I help you today?</div>
+  </div>
+
+  <div class="input-container">
+    <input type="text" id="user-input" placeholder="Type your message and hit Enter..." />
+    <button onclick="sendMessage()">Send</button>
+  </div>
+
+  <script>
+    const input = document.getElementById("user-input");
+
+    // Send on Enter
+    input.addEventListener("keydown", function(event) {
+      if (event.key === "Enter") {
+        sendMessage();
+      }
+    });
+
+    function sendMessage() {
+      const message = input.value.trim();
+      if (message === "") return;
+
+      addMessage("user", message);
+      input.value = "";
+
+      // Add loading animation
+      const loadingMsg = addMessage("bot", "Typing...");
+      loadingMsg.classList.add("loading");
+
+      // Simulate a delay for bot response
+      setTimeout(() => {
+        loadingMsg.remove(); // remove "Typing..."
+        const reply = generateReply(message);
+        addMessage("bot", reply);
+      }, 3500);
+    }
+
+    function addMessage(sender, text) {
+      const chatContainer = document.getElementById("chat-container");
+      const messageDiv = document.createElement("div");
+      messageDiv.classList.add("message", sender);
+      messageDiv.innerText = text;
+      chatContainer.appendChild(messageDiv);
+      chatContainer.scrollTop = chatContainer.scrollHeight;
+      return messageDiv;
+    }
+
+    function generateReply(userText) {
+      // Very simple emoji-aware bot reply logic
+      const lowerText = userText.toLowerCase();
+      if (lowerText.includes("hello") || lowerText.includes("hi")) {
+        return "👋 Hi there!";
+      } else if (lowerText.includes("how are you")) {
+        return "😊 I'm doing great, thank you!";
+      } else if (lowerText.includes("bye")) {
+        return "👋 Goodbye! Have a nice day!";
+      } else if (lowerText.includes("joke")) {
+        return "😂 Why don't robots have siblings? Because they all share the same motherboard!";
+      } else {
+        return "🤖 I heard you say: \"" + userText + "\"";
+      }
+    }
+  </script>
+
+</body>
+</html>
