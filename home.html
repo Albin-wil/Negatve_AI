@@ -134,8 +134,24 @@
       // Simulate a delay for bot response
       setTimeout(() => {
         loadingMsg.remove(); // remove "Typing..."
-        const reply = generateReply(message);
-        addMessage("bot", reply);
+// Send to backend API
+fetch("http://localhost:5000/chat", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({ message: message })
+})
+.then(res => res.json())
+.then(data => {
+  loadingMsg.remove();
+  addMessage("bot", data.reply);
+})
+.catch(err => {
+  loadingMsg.remove();
+  addMessage("bot", "⚠️ Error connecting to AI.");
+});
+
       }, 3500);
     }
 
