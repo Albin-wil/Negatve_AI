@@ -34,71 +34,45 @@ Essentially, it's the solution for when you crave a bit of simulated positive re
 ### Technologies/Components Used
 For Software:
 - [HTML]
-- [Frameworks used]
-- [Libraries used]
-- [Tools used]
-
-For Hardware:
-- [List main components]
-- [List specifications]
-- [List tools required]
+- [VS Code]
 
 ### Implementation
 For Software:
 # Installation
-[commands]
+[Lets the user type a name/message and press Enter to send.
+
+The AI waits 3 seconds before replying.
+
+The AI reply is a random negative comment about a person from a predefined set of 100.
+
+Here’s the full implementation:]
 
 # Run
-[commands]
+[Save the HTML File
+Folder Structure
+ Run in Browser]
 
 ### Project Documentation
-For Software:
+For Software:The Negative AI Chat is a simple browser-based project that simulates a sarcastic AI conversation using HTML, CSS, and JavaScript. It features a chat-like interface where the user types a name, presses Enter, and sees their message appear instantly as a chat bubble. The AI then displays a “Thinking…” message for 3 seconds before responding with one of 100 preloaded random negative comments about the given name, creating the feel of a generative AI conversation. The project is fully client-side, requiring no server or internet connection, and runs on any modern browser. It includes Enter key support for quick sending, random reply generation for variety, and visually distinct user and AI bubbles for clarity. Although it currently only produces random, context-free negative statements, it could be expanded in the future to include realistic AI-generated replies, different tones of conversation, voice interaction, or stored chat history. This makes it a fun, lightweight project for experimenting with front-end development and simple conversational UI design.
 
 # Screenshots (Add at least 3)
-![Screenshot1](Add screenshot 1 here with proper name)
-*Add caption explaining what this shows*
+![Screenshot1](https://chatgpt.com/s/m_68968e8935488191bc1c3dc1aca24dff)
+output
 
-![Screenshot2](Add screenshot 2 here with proper name)
-*Add caption explaining what this shows*
-
-![Screenshot3](Add screenshot 3 here with proper name)
-*Add caption explaining what this shows*
-
-# Diagrams
-![Workflow](Add your workflow/architecture diagram here)
-*Add caption explaining your workflow*
-
-For Hardware:
-
-# Schematic & Circuit
-![Circuit](Add your circuit diagram here)
-*Add caption explaining connections*
-
-![Schematic](Add your schematic diagram here)
-*Add caption explaining the schematic*
 
 # Build Photos
-![Components](Add photo of your components here)
-*List out all components shown*
+![Components](https://chatgpt.com/s/m_68968f6870cc8191ac74f6adaa16052c)
 
-![Build](Add photos of build process here)
-*Explain the build steps*
 
-![Final](Add photo of final product here)
-*Explain the final build*
 
 ### Project Demo
 # Video
-[Add your demo video link here]
-*Explain what the video demonstrates*
+https://drive.google.com/file/d/15Hy4divLJejYZGGFYGFFGyeraGqZlCsF/view?usp=sharing
 
-# Additional Demos
-[Add any extra demo materials/links]
 
 ## Team Contributions
-- [Name 1]: [Specific contributions]
-- [Name 2]: [Specific contributions]
-- [Name 3]: [Specific contributions]
+- [Albin wilson]: front end
+- [Dayal joy]: inner idea
 
 ---
 Made with ❤️ at TinkerHub Useless Projects 
